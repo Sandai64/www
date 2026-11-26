@@ -1,45 +1,877 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="fr" data-lang="fr">
 <head>
-    <title>Erwan EGASSE | Développeur full-stack</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Développeur full-stack, Photographe, Mannequin basé à Lyon.">
-    <meta name="author" content="Erwan EGASSE">
-    <link rel="canonical" href="https://erwanegasse.com/">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="stylesheet" href="./index.css">
-    <link rel="shortcut icon" href="./assets/img/png/favicon.png" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Erwan Egasse — Portfolio</title>
+<meta name="description" content="Erwan Egasse, développeur full-stack au sein du Groupe Crédit Agricole à Lyon. Musique sous le nom de Sandai64, et modèle.">
+<meta name="author" content="Erwan Egasse">
+<link rel="canonical" href="https://www.erwanegasse.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.erwanegasse.com/">
+<meta property="og:title" content="Erwan Egasse — Portfolio">
+<meta property="og:description" content="Développeur full-stack à Lyon. Musique et mannequinat.">
+<meta property="og:image" content="https://www.erwanegasse.com/assets/img/portrait.jpg">
+<meta name="theme-color" content="#0E0E0C">
+<link rel="icon" href="assets/img/png/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+  /* Apply the saved language before first paint. French unless the visitor chose English. */
+  (function () {
+    var l = null;
+    try { l = localStorage.getItem('ee-lang'); } catch (e) {}
+    if (l !== 'en') l = 'fr';
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.lang = l;
+  })();
+</script>
+<style>
+/* Layout: dark editorial index. Full-bleed sections separated by hairlines, a 1280px column,
+   mono numbering (01–04) in the accent, large Inter Tight headings. Single dark theme by design. */
+:root {
+  --bg: #0E0E0C;
+  --card: #161613;
+  --fg: #EEECE6;
+  --fg-2: #B9B7AE;
+  --muted: #8E8C84;
+  --faint: #5E5C56;
+  --line: #2A2925;
+  --line-2: #3A3934;
+  --accent: #FF6B2C;
+  --on-accent: #0E0E0C;
+  --white: #FFFFFF;
+
+  --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --pad-x: clamp(20px, 5vw, 80px);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--sans); line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: var(--fg); text-decoration: none; transition: color .15s; }
+a:hover { color: var(--white); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+::selection { background: var(--accent); color: var(--on-accent); }
+[hidden] { display: none !important; }
+h1, h2, h3, p, dl, dd { margin: 0; }
+
+:root[data-lang="fr"] [data-l="en"],
+:root[data-lang="en"] [data-l="fr"] { display: none !important; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.mono { font-family: var(--mono); }
+.label { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.num { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+
+.band {
+  padding-left: max(var(--pad-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--pad-x), env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 1280px; margin: 0 auto; }
+
+/* ---------- Header ---------- */
+.site-head {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;
+  padding-block: 20px; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .mark {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--fg); font-family: var(--mono); font-size: 13px; font-weight: 500;
+}
+.brand .name { font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.nav a { color: var(--fg-2); padding: 12px 0; }
+.nav a:hover { color: var(--white); }
+.lang {
+  height: 44px; padding: 0 14px; background: transparent; color: var(--fg); cursor: pointer;
+  border: 1px solid var(--line); font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+  transition: border-color .15s;
+}
+.lang:hover { border-color: var(--line-2); }
+.lang .o { color: var(--faint); transition: color .15s; }
+:root[data-lang="fr"] .lang .o-fr, :root[data-lang="en"] .lang .o-en { color: var(--fg); }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(48px, 7vw, 104px) clamp(56px, 7vw, 104px); }
+.hero .inner { display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-end; }
+.hero-copy { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+.hero h1 { font-size: clamp(64px, 10.5vw, 168px); line-height: .88; letter-spacing: -.045em; font-weight: 600; }
+.hero h1 .dot { color: var(--accent); }
+.lead { max-width: 580px; font-size: 20px; line-height: 1.5; color: var(--fg-2); }
+.index { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.index a {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px;
+  padding: 20px 0; border-bottom: 1px solid var(--line); color: var(--fg);
+}
+.index .n { flex: 0 0 40px; font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.index .t { flex: 1 1 200px; font-size: 26px; font-weight: 500; letter-spacing: -.02em; }
+.index .d { flex: 2 1 280px; font-size: 15px; color: var(--muted); }
+.index .arrow { font-size: 20px; transition: transform .2s ease; }
+.index a:hover .arrow { transform: translateX(4px); color: var(--accent); }
+
+.portrait {
+  position: relative; flex: 1 1 380px; max-width: 420px; min-width: 0; aspect-ratio: 3 / 4;
+  overflow: hidden; background: var(--card);
+}
+.portrait img, .portrait canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.portrait img { object-fit: cover; }
+.portrait canvas { pointer-events: none; }
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(64px, 8vw, 112px); border-top: 1px solid var(--line); }
+.sec-head {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding-bottom: 40px; border-bottom: 1px solid var(--line);
+}
+.sec-head > div { display: flex; flex-direction: column; gap: 20px; }
+.sec-head h2 { font-size: clamp(40px, 5vw, 72px); line-height: .95; letter-spacing: -.035em; font-weight: 600; max-width: 820px; }
+.sec-head p { max-width: 400px; font-size: 16px; line-height: 1.55; color: var(--muted); }
+.sub { margin-top: 80px; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-weight: 400; }
+
+/* Project cards */
+.cards { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
+.card {
+  flex: 1 1 420px; min-width: 0; background: var(--card); border: 1px solid var(--line); padding: 32px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.card-top .k { color: var(--muted); }
+.tag { padding: 6px 10px; border: 1px solid var(--line-2); color: var(--fg-2); white-space: nowrap; }
+.tag.hot { border-color: var(--accent); color: var(--accent); }
+.card h3 { font-size: 44px; line-height: 1; letter-spacing: -.03em; font-weight: 600; }
+.card p { font-size: 17px; line-height: 1.55; color: var(--fg-2); }
+.facts { margin-top: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding-top: 24px; border-top: 1px solid var(--line); }
+dt { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+dd { margin: 6px 0 0; font-size: 15px; }
+
+/* Experience */
+.job { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.job .when { flex: 0 0 160px; font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.job .who { flex: 1 1 260px; }
+.job .role { font-size: 22px; font-weight: 500; letter-spacing: -.015em; }
+.job .org { margin-top: 4px; font-size: 15px; color: var(--accent); }
+.job p { flex: 2 1 380px; font-size: 15px; line-height: 1.6; color: var(--fg-2); }
+
+/* Skills + education */
+.split { display: flex; flex-wrap: wrap; gap: 56px; margin-top: 80px; }
+.skills { flex: 3 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.skills .sub, .side .sub { margin: 0; }
+.group { display: flex; flex-direction: column; gap: 12px; }
+.group > span { font-size: 15px; font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.chips li { padding: 7px 12px; border: 1px solid var(--line); font-family: var(--mono); font-size: 13px; color: var(--fg-2); }
+.side { flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.side .sub + .sub, .side .langs-title { margin-top: 16px; }
+.edu .y { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.edu .t { margin-top: 6px; font-size: 17px; font-weight: 500; }
+.edu .s { margin-top: 2px; font-size: 15px; color: var(--muted); }
+.langs { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.langs div { display: flex; justify-content: space-between; gap: 16px; }
+.langs span + span { color: var(--muted); text-align: right; }
+
+/* Music */
+.music { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
+.player {
+  flex: 3 1 520px; min-width: 0; background: var(--card); border: 1px solid var(--line); padding: 32px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.player .row-top { display: flex; justify-content: space-between; gap: 16px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.now { display: flex; align-items: center; gap: 24px; }
+.play {
+  flex: 0 0 auto; width: 64px; height: 64px; border-radius: 50%; border: 0; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s, filter .15s;
+}
+.play:hover { filter: brightness(1.08); }
+.play:active { transform: scale(.96); }
+.play svg { width: 22px; height: 22px; display: block; }
+.play .i-pause, .play.is-playing .i-play { display: none; }
+.play.is-playing .i-pause { display: block; }
+.play .l-pause, .play.is-playing .l-play { display: none; }
+.play.is-playing .l-pause { display: inline; }
+.play.is-loading { animation: breathe 1s ease-in-out infinite; }
+@keyframes breathe { 50% { filter: brightness(.8); } }
+.now .title { font-size: 32px; font-weight: 600; letter-spacing: -.025em; line-height: 1.15; overflow-wrap: anywhere; }
+.now .meta { margin-top: 4px; font-size: 15px; color: var(--muted); }
+.now .meta a { color: var(--fg-2); border-bottom: 1px solid var(--line-2); }
+.now .meta a:hover { color: var(--white); }
+.bars { display: flex; align-items: center; gap: 3px; height: 96px; cursor: pointer; touch-action: manipulation; }
+.bars span { flex: 1 1 0; min-width: 1px; border-radius: 1px; background: var(--line-2); transition: background .12s; }
+.bars span.on { background: var(--accent); }
+.times { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tracks { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.tracks button {
+  width: 100%; display: flex; gap: 20px; padding: 14px 0; border: 0; border-top: 1px solid var(--line);
+  background: transparent; color: var(--fg); font-size: 15px; text-align: left; cursor: pointer;
+}
+.tracks button:hover .tt { color: var(--white); }
+.tracks .tn { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.tracks [aria-current="true"] .tn { color: var(--accent); }
+.tracks .tt { flex: 1; min-width: 0; }
+.tracks .td { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.music-side { flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.video {
+  position: relative; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; padding: 0; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line-2); display: block; width: 100%;
+}
+.video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: .55; transition: opacity .2s, transform .4s ease; }
+.video:hover img { opacity: .75; transform: scale(1.02); }
+.video .over {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  padding: 16px; text-align: center; background: linear-gradient(180deg, rgba(14, 14, 12, .1), rgba(14, 14, 12, .65));
+}
+.video .over svg { width: 44px; height: 44px; }
+.video .over .label { color: var(--fg); }
+.video .over .vt { font-size: 15px; color: var(--fg-2); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.out {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 22px 24px; border: 1px solid var(--line); color: var(--fg); transition: border-color .15s;
+}
+.out:hover { border-color: var(--line-2); }
+.out .ot { display: block; font-size: 22px; font-weight: 500; letter-spacing: -.015em; }
+.out .os { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+.out .oa { font-size: 22px; color: var(--accent); transition: transform .2s; }
+.out:hover .oa { transform: translate(2px, -2px); }
+.sc-frame { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; border: 0; opacity: 0; pointer-events: none; }
+
+/* Modelling */
+.book { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 48px; }
+.book img { flex: 1 1 220px; min-width: 0; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: var(--card); }
+@media (max-width: 600px) { .book { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
+.comp {
+  margin-top: 24px; background: var(--card); border: 1px solid var(--line); padding: 28px 32px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 24px 48px;
+}
+.comp dl { flex: 999 1 560px; display: flex; flex-wrap: wrap; gap: 16px 40px; font-size: 15px; }
+.cta {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 0 24px;
+  background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 15px; transition: filter .15s;
+}
+.cta:hover { color: var(--on-accent); filter: brightness(1.08); }
+.hero-copy .cta { align-self: flex-start; }
+
+/* Contact */
+.contact { padding-block: clamp(72px, 9vw, 128px) 48px; border-top: 1px solid var(--line); }
+.contact .inner { display: flex; flex-direction: column; gap: 36px; }
+.contact h2 { font-size: clamp(48px, 7vw, 112px); line-height: .92; letter-spacing: -.04em; font-weight: 600; }
+.mail {
+  align-self: flex-start; font-size: clamp(22px, 3vw, 40px); font-weight: 500; letter-spacing: -.02em;
+  color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 4px; overflow-wrap: anywhere; max-width: 100%;
+}
+.mail:hover { color: var(--white); border-color: var(--white); }
+.where { font-size: 16px; color: var(--muted); }
+.socials { display: flex; flex-wrap: wrap; gap: 8px 32px; padding-top: 24px; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+.socials a { padding: 12px 0; color: var(--fg-2); }
+.socials a:hover { color: var(--white); }
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 24px;
+  border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted);
+}
+.foot a { color: var(--muted); }
+.foot a:hover { color: var(--white); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
 </head>
-
 <body>
-    <div class="flex justify-center h-full p-2 select-none md:p-8">
-        <div
-            class="flex flex-col items-center justify-center w-full h-full gap-2 px-4 py-16 md:py-40"
-            style="background-image: url('./assets/img/5.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat;"
-        >
-            <div class="w-full px-6 py-3 text-left bg-black md:w-max">
-                <h1 class="text-lg text-white bg-black">Erwan Egasse</h1>
-                <h1 class="text-sm italic text-white bg-black">Développeur, Photographe, Mannequin</h1>
-            </div>
 
-            <div class="flex flex-col items-start justify-center w-full gap-2 md:items-center">
-                <div class="w-full p-8 bg-black md:w-max">
-                    <h2 class="text-2xl text-white">Que recherches-tu ?</h2>
-                    <hr class="w-24 mt-1">
+<header class="site-head band">
+  <a class="brand" href="#top">
+    <span class="mark">EE</span>
+    <span class="name">Erwan Egasse</span>
+  </a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="#dev">01 <span data-l="fr">Développement</span><span data-l="en">Development</span></a>
+    <a href="#musique">02 <span data-l="fr">Musique</span><span data-l="en">Music</span></a>
+    <a href="#modele">03 <span data-l="fr">Modèle</span><span data-l="en">Modelling</span></a>
+    <a href="#contact">04 Contact</a>
+  </nav>
+  <button class="lang" id="lang-toggle" type="button">
+    <span class="sr-only"><span data-l="fr">Passer en anglais</span><span data-l="en">Switch to French</span></span>
+    <span aria-hidden="true"><span class="o o-fr">FR</span> <span class="o">/</span> <span class="o o-en">EN</span></span>
+  </button>
+</header>
 
-                    <div class="flex flex-col items-center gap-4 mt-4 md:flex-row md:*:w-max *:w-full max-w-screen-md">
-                        <a href="https://www.instagram.com/sandai128/" class="px-4 py-2 text-black underline transition-all bg-white cursor-pointer hover:opacity-75 hover:-translate-y-1">Instagram</a>
-                        <a href="https://www.youtube.com/@Sandai64" class="px-4 py-2 text-black underline transition-all bg-white cursor-pointer hover:opacity-75 hover:-translate-y-1">YouTube</a>
-                        <a href="https://github.com/Sandai64" class="px-4 py-2 text-black underline transition-all bg-white cursor-pointer hover:opacity-75 hover:-translate-y-1">Github</a>
-                        <a href="https://images.erwanegasse.com/" class="px-4 py-2 text-black underline transition-all bg-white cursor-pointer hover:opacity-75 hover:-translate-y-1">Ma vie en images</a>
-                        <a href="./assets/download/CV_2026_Erwan_Egasse.pdf" class="px-4 py-2 text-black underline transition-all bg-white cursor-pointer hover:opacity-75 hover:-translate-y-1">Mon CV</a>
-                    </div>
-                </div>
-            </div>
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" class="hero band">
+    <div class="inner">
+      <div class="hero-copy">
+        <p class="label">
+          <span data-l="fr">Développeur full-stack · Architecte logiciel · Modèle</span>
+          <span data-l="en">Full-stack developer · Software architect · Model</span>
+        </p>
+        <h1>Erwan<br>Egasse<span class="dot">.</span></h1>
+        <p class="lead">
+          <span data-l="fr">Développeur full-stack au sein du Groupe Crédit Agricole à Lyon. Je compose aussi de la musique et je travaille comme modèle.</span>
+          <span data-l="en">Full-stack developer at Groupe Crédit Agricole in Lyon. I also make music and work as a model.</span>
+        </p>
+        <a class="cta" href="mailto:erwan.egasse@outlook.com"><span data-l="fr">Me contacter</span><span data-l="en">Get in touch</span></a>
+        <div class="index">
+          <a href="#dev">
+            <span class="n">01</span>
+            <span class="t"><span data-l="fr">Développement</span><span data-l="en">Development</span></span>
+            <span class="d"><span data-l="fr">Full-stack et architecture logicielle</span><span data-l="en">Full-stack and software architecture</span></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#musique">
+            <span class="n">02</span>
+            <span class="t"><span data-l="fr">Musique</span><span data-l="en">Music</span></span>
+            <span class="d"><span data-l="fr">YouTube et SoundCloud</span><span data-l="en">YouTube and SoundCloud</span></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#modele">
+            <span class="n">03</span>
+            <span class="t"><span data-l="fr">Modèle</span><span data-l="en">Modelling</span></span>
+            <span class="d"><span data-l="fr">Book et carte composite</span><span data-l="en">Portfolio and comp card</span></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
+      </div>
+      <div class="portrait" id="portrait">
+        <img src="assets/img/portrait.jpg" alt="Erwan Egasse" width="960" height="1280">
+        <canvas id="portrait-fx" aria-hidden="true"></canvas>
+      </div>
     </div>
-</body>
+  </section>
 
+  <!-- ============ 01 DEVELOPPEMENT ============ -->
+  <section id="dev" class="section band">
+    <div class="inner">
+      <div class="sec-head">
+        <div>
+          <span class="num">01</span>
+          <h2><span data-l="fr">Développement</span><span data-l="en">Development</span></h2>
+        </div>
+        <p>
+          <span data-l="fr">Développeur full-stack au Groupe Crédit Agricole depuis 2023. Master Expert en architecture des logiciels, ESGI Lyon.</span>
+          <span data-l="en">Full-stack developer at Groupe Crédit Agricole since 2023. Master's in software architecture, ESGI Lyon.</span>
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <span class="k"><span data-l="fr">Projet</span><span data-l="en">Project</span> · 2024</span>
+            <span class="tag hot">Distinction</span>
+          </div>
+          <h3>Hyperion</h3>
+          <p>
+            <span data-l="fr">Monitoring de serveurs à l'échelle de l'entreprise. Développement et pilotage du projet from scratch.</span>
+            <span data-l="en">Company-wide server monitoring. I built and led the project from scratch.</span>
+          </p>
+          <dl class="facts">
+            <div><dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt><dd><span data-l="fr">Développement et pilotage</span><span data-l="en">Development and project lead</span></dd></div>
+            <div><dt><span data-l="fr">Périmètre</span><span data-l="en">Scope</span></dt><dd><span data-l="fr">Groupe</span><span data-l="en">Group-wide</span></dd></div>
+            <div><dt><span data-l="fr">Organisation</span><span data-l="en">Organisation</span></dt><dd>Groupe Crédit Agricole</dd></div>
+            <div><dt><span data-l="fr">Année</span><span data-l="en">Year</span></dt><dd>2024</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="k">Studio 909</span>
+            <span class="tag"><span data-l="fr">En développement</span><span data-l="en">In development</span></span>
+          </div>
+          <h3>Stockio</h3>
+          <p>
+            <span data-l="fr">Stockage de fichiers en ligne, conçu et hébergé en France. Chiffrement de bout en bout pour tous les comptes. Paiement à l'usage, aucun traqueur.</span>
+            <span data-l="en">Online file storage, designed and hosted in France. End-to-end encryption on every account. Pay as you go, no trackers.</span>
+          </p>
+          <dl class="facts">
+            <div><dt><span data-l="fr">Rôle</span><span data-l="en">Role</span></dt><dd><span data-l="fr">Fondateur</span><span data-l="en">Founder</span></dd></div>
+            <div><dt><span data-l="fr">Hébergement</span><span data-l="en">Hosting</span></dt><dd>France</dd></div>
+            <div><dt><span data-l="fr">Statut</span><span data-l="en">Status</span></dt><dd><span data-l="fr">Alpha privée prévue</span><span data-l="en">Private alpha planned</span></dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <h3 class="label sub"><span data-l="fr">Expérience</span><span data-l="en">Experience</span></h3>
+      <div class="job">
+        <span class="when"><span data-l="fr">2023 — Aujourd'hui</span><span data-l="en">2023 — Present</span></span>
+        <div class="who">
+          <div class="role"><span data-l="fr">Développeur full-stack</span><span data-l="en">Full-stack developer</span></div>
+          <div class="org">Groupe Crédit Agricole · Lyon</div>
+        </div>
+        <p>
+          <span data-l="fr">Maintenance et patching d'applications critiques, développement d'applications from scratch, migrations Java et Spring Boot, gestion de GED avec Alfresco, propositions d'amélioration des processus, veille technologique et cybersécurité.</span>
+          <span data-l="en">Maintenance and patching of critical applications, new applications built from scratch, Java and Spring Boot migrations, document management with Alfresco, process improvement proposals, technology and security watch.</span>
+        </p>
+      </div>
+      <div class="job">
+        <span class="when">2021 — 2023</span>
+        <div class="who">
+          <div class="role"><span data-l="fr">Développeur full-stack</span><span data-l="en">Full-stack developer</span></div>
+          <div class="org">Vitavie SARL · Besançon</div>
+        </div>
+        <p>
+          <span data-l="fr">Microservices, développement mobile Flutter, pages Vue.js, maintenance d'un back-end FuelPHP.</span>
+          <span data-l="en">Microservices, Flutter mobile development, Vue.js pages, maintenance of a FuelPHP back end.</span>
+        </p>
+      </div>
+      <div class="job">
+        <span class="when">2020 — 2021</span>
+        <div class="who">
+          <div class="role"><span data-l="fr">Développeur web freelance</span><span data-l="en">Freelance web developer</span></div>
+          <div class="org"><span data-l="fr">Indépendant</span><span data-l="en">Self-employed</span> · Besançon</div>
+        </div>
+        <p>
+          <span data-l="fr">Développement web pour des clients, accompagnement, maintenance de codebase, correction de vulnérabilités.</span>
+          <span data-l="en">Web development for clients, guidance, codebase maintenance, vulnerability fixes.</span>
+        </p>
+      </div>
+
+      <div class="split">
+        <div class="skills">
+          <h3 class="label sub"><span data-l="fr">Compétences</span><span data-l="en">Skills</span></h3>
+          <div class="group">
+            <span><span data-l="fr">Langages</span><span data-l="en">Languages</span></span>
+            <ul class="chips"><li>Java</li><li>TypeScript</li><li>Python</li><li>Kotlin</li><li>Rust</li><li>Dart</li><li>PHP</li><li>SQL · PL/SQL</li><li>Bash</li></ul>
+          </div>
+          <div class="group">
+            <span>Frameworks</span>
+            <ul class="chips"><li>Spring Boot</li><li>Symfony</li><li>Laravel</li><li>Angular</li><li>React</li><li>Vue.js</li><li>Flutter</li><li>Tailwind</li></ul>
+          </div>
+          <div class="group">
+            <span><span data-l="fr">Infrastructure et outils</span><span data-l="en">Infrastructure and tools</span></span>
+            <ul class="chips"><li>Kubernetes</li><li>Docker</li><li>ArgoCD</li><li>Jenkins</li><li>Kafka</li><li>RabbitMQ</li><li>AWS</li><li>OpenShift</li><li>Terraform</li><li>Linux</li></ul>
+          </div>
+          <div class="group">
+            <span><span data-l="fr">Méthodes</span><span data-l="en">Practices</span></span>
+            <ul class="chips"><li><span data-l="fr">Architecture logicielle</span><span data-l="en">Software architecture</span></li><li>Design patterns</li><li>Clean code</li><li>CI/CD</li><li>Infrastructure as Code</li><li>Agile · Scrum</li></ul>
+          </div>
+        </div>
+        <div class="side">
+          <h3 class="label sub"><span data-l="fr">Formation</span><span data-l="en">Education</span></h3>
+          <div class="edu">
+            <div class="y">2022 — 2024</div>
+            <div class="t"><span data-l="fr">Master Expert en architecture des logiciels</span><span data-l="en">Master's, Software Architecture</span></div>
+            <div class="s">ESGI Lyon</div>
+          </div>
+          <div class="edu">
+            <div class="y">2021 — 2022</div>
+            <div class="t"><span data-l="fr">Bachelor Chargé de développement de solutions logicielles</span><span data-l="en">Bachelor's, Software Development</span></div>
+            <div class="s">ESGI Lyon</div>
+          </div>
+          <div class="edu">
+            <div class="y">2019 — 2021</div>
+            <div class="t"><span data-l="fr">BTS SIO, option SLAM</span><span data-l="en">BTS SIO (IT services), software track</span></div>
+            <div class="s">Lycée Louis Pergaud, Besançon</div>
+          </div>
+          <h3 class="label sub langs-title"><span data-l="fr">Langues</span><span data-l="en">Languages</span></h3>
+          <div class="langs">
+            <div><span><span data-l="fr">Français</span><span data-l="en">French</span></span><span><span data-l="fr">Langue maternelle</span><span data-l="en">Native</span></span></div>
+            <div><span><span data-l="fr">Anglais</span><span data-l="en">English</span></span><span>C1 · TOEIC 945</span></div>
+            <div><span><span data-l="fr">Chinois</span><span data-l="en">Chinese</span></span><span>A2</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 MUSIQUE ============ -->
+  <section id="musique" class="section band">
+    <div class="inner">
+      <div class="sec-head">
+        <div>
+          <span class="num">02</span>
+          <h2><span data-l="fr">Musique</span><span data-l="en">Music</span></h2>
+        </div>
+        <p>
+          <span data-l="fr">Je compose sous le nom de Sandai64. Les morceaux sont sur SoundCloud, les vidéos sur YouTube.</span>
+          <span data-l="en">I make music as Sandai64. Tracks are on SoundCloud, videos on YouTube.</span>
+        </p>
+      </div>
+
+      <div class="music">
+        <div class="player" id="player">
+          <div class="row-top">
+            <span id="p-kicker"><span data-l="fr">Dernière sortie</span><span data-l="en">Latest release</span></span>
+            <span id="p-year">2026</span>
+          </div>
+          <div class="now">
+            <button class="play" id="p-play" type="button">
+              <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="#0E0E0C"/></svg>
+              <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="#0E0E0C"/></svg>
+              <span class="sr-only">
+                <span class="l-play"><span data-l="fr">Lire</span><span data-l="en">Play</span></span>
+                <span class="l-pause"><span data-l="fr">Pause</span><span data-l="en">Pause</span></span>
+              </span>
+            </button>
+            <div style="min-width:0">
+              <div class="title" id="p-title">eshop</div>
+              <div class="meta" id="p-meta"><span data-l="fr">Octobre 2026</span><span data-l="en">October 2026</span> · Erwan Egasse</div>
+            </div>
+          </div>
+          <div class="bars" id="p-bars" aria-hidden="true"></div>
+          <div class="times"><span id="p-pos">0:00</span><span id="p-dur">1:15</span></div>
+          <ol class="tracks" id="p-tracks"></ol>
+        </div>
+
+        <div class="music-side">
+          <button class="video" id="video" type="button" data-id="rMAR_T6tQPA">
+            <img src="https://i.ytimg.com/vi/rMAR_T6tQPA/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+            <span class="over">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EEECE6" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M10 8.5v7l5.5-3.5z"/></svg>
+              <span class="label"><span data-l="fr">Vidéo</span><span data-l="en">Video</span> · 5:29</span>
+              <span class="vt">Alicia</span>
+            </span>
+          </button>
+          <a class="out" href="https://soundcloud.com/sandai64/tracks" target="_blank" rel="noopener">
+            <span><span class="ot">SoundCloud</span><span class="os"><span data-l="fr">Tous les morceaux</span><span data-l="en">All tracks</span></span></span>
+            <span class="oa" aria-hidden="true">↗</span>
+          </a>
+          <a class="out" href="https://www.youtube.com/@Sandai64/videos" target="_blank" rel="noopener">
+            <span><span class="ot">YouTube</span><span class="os"><span data-l="fr">Toutes les vidéos</span><span data-l="en">All videos</span></span></span>
+            <span class="oa" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 MODELE ============ -->
+  <section id="modele" class="section band">
+    <div class="inner">
+      <div class="sec-head">
+        <div>
+          <span class="num">03</span>
+          <h2><span data-l="fr">Modèle</span><span data-l="en">Modelling</span></h2>
+        </div>
+        <p>
+          <span data-l="fr">Modèle indépendant, basé à Lyon.</span>
+          <span data-l="en">Independent model based in Lyon.</span>
+        </p>
+      </div>
+      <div class="book">
+        <img src="assets/img/modele-1.jpg" width="960" height="1280" loading="lazy" decoding="async" alt="Erwan Egasse, chemise claire sur fond bleu">
+        <img src="assets/img/modele-2.jpg" width="960" height="1280" loading="lazy" decoding="async" alt="Erwan Egasse, col roulé noir et lunettes, mur vert">
+        <img src="assets/img/modele-3.jpg" width="960" height="1280" loading="lazy" decoding="async" alt="Erwan Egasse, chemise bordeaux en studio">
+        <img src="assets/img/modele-4.jpg" width="960" height="1280" loading="lazy" decoding="async" alt="Erwan Egasse, manteau en velours et lunettes, en extérieur">
+      </div>
+      <div class="comp">
+        <span class="label">Composite</span>
+        <dl>
+          <div><dt><span data-l="fr">Taille</span><span data-l="en">Height</span></dt><dd>172 cm</dd></div>
+          <div><dt><span data-l="fr">Vêtements</span><span data-l="en">Clothing</span></dt><dd><span data-l="fr">Taille S</span><span data-l="en">Size S</span></dd></div>
+          <div><dt><span data-l="fr">Cheveux</span><span data-l="en">Hair</span></dt><dd><span data-l="fr">Noirs</span><span data-l="en">Black</span></dd></div>
+          <div><dt><span data-l="fr">Yeux</span><span data-l="en">Eyes</span></dt><dd><span data-l="fr">Marron</span><span data-l="en">Brown</span></dd></div>
+          <div><dt><span data-l="fr">Ville</span><span data-l="en">City</span></dt><dd>Lyon</dd></div>
+          <div><dt><span data-l="fr">Langues</span><span data-l="en">Languages</span></dt><dd><span data-l="fr">Français, anglais</span><span data-l="en">French, English</span></dd></div>
+          <div><dt><span data-l="fr">Agence</span><span data-l="en">Agency</span></dt><dd><span data-l="fr">Indépendant, basé à Lyon</span><span data-l="en">Independent, based in Lyon</span></dd></div>
+        </dl>
+        <a class="cta" href="mailto:erwan.egasse@outlook.com"><span data-l="fr">Envoyer un e-mail</span><span data-l="en">Send an email</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 CONTACT ============ -->
+  <section id="contact" class="contact band">
+    <div class="inner">
+      <span class="num">04</span>
+      <h2>Contact</h2>
+      <a class="mail" href="mailto:erwan.egasse@outlook.com">erwan.egasse@outlook.com</a>
+      <p class="where"><span data-l="fr">Lyon · Télétravail ou présentiel</span><span data-l="en">Lyon · Remote or on-site</span></p>
+      <nav class="socials" aria-label="Réseaux">
+        <a href="https://github.com/Sandai64" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.youtube.com/@Sandai64" target="_blank" rel="noopener">YouTube ↗</a>
+        <a href="https://soundcloud.com/sandai64" target="_blank" rel="noopener">SoundCloud ↗</a>
+        <a href="https://www.instagram.com/sandai128/" target="_blank" rel="noopener">Instagram ↗</a>
+      </nav>
+      <footer class="foot">
+        <span>© Erwan Egasse</span>
+        <a href="#top"><span data-l="fr">Haut de page</span><span data-l="en">Back to top</span> ↑</a>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function $(id) { return document.getElementById(id); }
+  function both(fr, en) { return '<span data-l="fr">' + fr + '</span><span data-l="en">' + en + '</span>'; }
+
+  /* ---------- Language ---------- */
+  $('lang-toggle').addEventListener('click', function () {
+    var next = root.getAttribute('data-lang') === 'fr' ? 'en' : 'fr';
+    root.setAttribute('data-lang', next);
+    root.lang = next;
+    try { localStorage.setItem('ee-lang', next); } catch (e) {}
+  });
+
+  /* ---------- Portrait: ASCII effect (WebGL2), the photo shows through around the pointer ---------- */
+  (function portraitFx() {
+    var holder = $('portrait'), canvas = $('portrait-fx'), imgEl = holder.querySelector('img');
+    var ACCENT = [1, 107 / 255, 44 / 255], STRENGTH = 0.2;
+    var gl = canvas.getContext('webgl2', { antialias: false, alpha: true, premultipliedAlpha: false, powerPreference: 'low-power' });
+    if (!gl) return;
+    var VS = '#version 300 es\nin vec2 aPos;\nvoid main() { gl_Position = vec4(aPos, 0.0, 1.0); }';
+    var FS = [
+      '#version 300 es',
+      'precision highp float;',
+      'uniform sampler2D uTex; uniform vec2 uRes; uniform vec2 uCover; uniform float uTime;',
+      'uniform vec2 uMouse; uniform float uHover; uniform vec3 uAccent; uniform float uAscii;',
+      'out vec4 outColor;',
+      'float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
+      'float noise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);',
+      '  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y); }',
+      'vec3 photo(vec2 uv) { uv = (uv - 0.5) * uCover + 0.5; return texture(uTex, vec2(uv.x, 1.0 - uv.y)).rgb; }',
+      'int glyph(float g) {',
+      '  if (g < 0.12) return 0; if (g < 0.22) return 4096; if (g < 0.32) return 65600; if (g < 0.42) return 332772;',
+      '  if (g < 0.52) return 15255086; if (g < 0.62) return 23385164; if (g < 0.72) return 15252014; if (g < 0.82) return 13199452;',
+      '  return 11512810; }',
+      'float charAt(int n, vec2 p) { p = floor(p * vec2(-4.0, 4.0) + 2.5);',
+      '  if (p.x < 0.0 || p.x > 4.0 || p.y < 0.0 || p.y > 4.0) return 0.0;',
+      '  int a = int(p.x) + 5 * int(p.y); return float((n >> a) & 1); }',
+      'void main() {',
+      '  vec2 uv = gl_FragCoord.xy / uRes; float asp = uRes.x / uRes.y;',
+      '  vec2 dv = (uv - uMouse) * vec2(asp, 1.0); float d = length(dv); float t = uTime;',
+      '  float cell = 8.0 * max(1.0, floor(uRes.y / 560.0 + 0.5));',
+      '  vec2 cp = floor(gl_FragCoord.xy / cell); vec2 cuv = (cp + 0.5) * cell / uRes;',
+      '  vec3 pc = photo(cuv);',
+      '  float g = smoothstep(0.04, 0.85, dot(pc, vec3(0.299, 0.587, 0.114)));',
+      '  g += (noise(cp * 0.12 + vec2(t * 0.2, -t * 0.12)) - 0.5) * 0.1;',
+      '  float by = 1.25 - fract(t * 0.045) * 1.5; float bd = abs(cuv.y - by);',
+      '  float scr = step(bd, 0.1) * step(0.05, bd);',
+      '  if (hash(cp + floor(t * 8.0)) < 0.2 * scr) g = hash(cp * 1.7 + floor(t * 8.0) + 3.1);',
+      '  float on = charAt(glyph(g), fract(gl_FragCoord.xy / cell) * 2.0 - 1.0);',
+      '  vec3 asc = mix(vec3(0.055, 0.055, 0.047), min(pc * 1.4 + 0.05, vec3(1.0)), on);',
+      '  float reveal = max(smoothstep(0.08, 0.0, bd), uHover * smoothstep(0.3, 0.08, d));',
+      '  vec3 col = mix(photo(uv), asc, uAscii * (1.0 - reveal));',
+      '  col += (hash(gl_FragCoord.xy + fract(t) * 61.0) - 0.5) * 0.03;',
+      '  vec2 vq = uv - 0.5; col *= 1.0 - dot(vq, vq) * 0.3;',
+      '  outColor = vec4(col, 1.0);',
+      '}'
+    ].join('\n');
+    function sh(type, src) {
+      var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; }
+      return s;
+    }
+    var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'aPos');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var u = {};
+    ['uTex', 'uRes', 'uCover', 'uTime', 'uMouse', 'uHover', 'uAccent', 'uAscii'].forEach(function (k) { u[k] = gl.getUniformLocation(prog, k); });
+    gl.uniform1i(u.uTex, 0);
+    var tex = gl.createTexture(), ready = false, visible = true, dirty = true, aspect = .75;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var p = { x: .5, y: .6, active: false }, hover = 0, mx = p.x, my = p.y, start = performance.now();
+
+    function upload(src) {
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+      aspect = (src.naturalWidth || src.width) / (src.naturalHeight || src.height);
+      ready = true; dirty = true;
+    }
+    if (imgEl.complete && imgEl.naturalWidth) upload(imgEl);
+    else imgEl.addEventListener('load', function () { upload(imgEl); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; dirty = true; }).observe(canvas);
+    }
+    holder.addEventListener('pointermove', function (e) {
+      var r = canvas.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      p.x = (e.clientX - r.left) / r.width;
+      p.y = 1 - (e.clientY - r.top) / r.height;
+      p.active = true; dirty = true;
+    });
+    holder.addEventListener('pointerleave', function () { p.active = false; dirty = true; });
+
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (!visible || !ready || document.hidden) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = Math.max(1, Math.round(canvas.clientWidth * dpr)), h = Math.max(1, Math.round(canvas.clientHeight * dpr));
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; dirty = true; }
+      var k = reduce ? 1 : .08;
+      hover += ((p.active ? 1 : 0) - hover) * k;
+      mx += (p.x - mx) * k;
+      my += (p.y - my) * k;
+      if (reduce && !dirty) return;
+      dirty = false;
+      var ca = w / h, cover = ca > aspect ? [1, aspect / ca] : [ca / aspect, 1];
+      gl.viewport(0, 0, w, h);
+      gl.uniform2f(u.uRes, w, h);
+      gl.uniform2f(u.uCover, cover[0], cover[1]);
+      gl.uniform1f(u.uTime, reduce ? 21.1 : (now - start) / 1000);
+      gl.uniform2f(u.uMouse, mx, my);
+      gl.uniform1f(u.uHover, hover);
+      gl.uniform3f(u.uAccent, ACCENT[0], ACCENT[1], ACCENT[2]);
+      gl.uniform1f(u.uAscii, STRENGTH);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ---------- Music player (SoundCloud widget, loaded on first interaction) ---------- */
+  // Bar heights come from each track's SoundCloud waveform, averaged into 72 bars.
+  var TRACKS = [
+    { title: 'eshop', url: 'https://soundcloud.com/sandai64/eshop', ms: 75637, year: 2026, fr: 'Octobre 2026', en: 'October 2026',
+      bars: [56,34,16,30,43,29,12,48,47,26,29,47,43,19,76,74,60,53,80,71,67,65,71,73,64,71,68,64,81,84,70,64,77,76,68,66,91,83,82,73,82,81,78,100,81,84,76,85,74,78,87,79,65,54,76,78,69,82,82,80,80,84,78,78,81,88,74,72,85,89,74,85] },
+    { title: 'Free Software (Made in Linux)', url: 'https://soundcloud.com/sandai64/free-software-made-in-linux', ms: 257054, year: 2026, fr: 'Août 2026', en: 'August 2026',
+      bars: [30,14,34,18,39,30,33,37,59,79,82,84,84,85,74,85,86,82,85,83,79,88,72,81,86,71,47,57,59,63,53,56,61,70,90,74,88,81,83,69,81,61,67,75,78,78,83,92,87,98,93,88,87,100,83,87,78,86,77,81,70,73,73,83,69,71,74,72,28,12,35,24] },
+    { title: 'Demo 01', url: 'https://soundcloud.com/sandai64/lourd', ms: 241936, year: 2026, fr: 'Août 2026', en: 'August 2026',
+      bars: [73,74,68,71,74,80,78,79,79,90,89,87,89,92,92,88,91,87,95,95,95,96,95,97,96,95,97,88,83,80,80,83,89,84,91,86,97,94,93,97,96,96,97,95,96,97,100,98,98,98,99,96,98,98,88,91,88,89,85,85,85,83,85,80,80,78,78,74,51,37,24,12] }
+  ];
+  var cur = 0, rel = 0, playing = false, widget = null, widgetPromise = null, loadedUrl = null, pendingSeek = null;
+  var playBtn = $('p-play'), barsEl = $('p-bars'), posEl = $('p-pos'), durEl = $('p-dur'), listEl = $('p-tracks');
+
+  function fmt(ms) { var s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function paintProgress() {
+    var n = Math.round(rel * barsEl.children.length);
+    for (var i = 0; i < barsEl.children.length; i++) barsEl.children[i].classList.toggle('on', i < n);
+    posEl.textContent = fmt(rel * TRACKS[cur].ms);
+  }
+  function showTrack(i) {
+    cur = i; rel = 0;
+    var t = TRACKS[i];
+    $('p-title').textContent = t.title;
+    $('p-meta').innerHTML = both(t.fr, t.en) + ' · Erwan Egasse';
+    $('p-kicker').innerHTML = i === 0 ? both('Dernière sortie', 'Latest release') : both('Morceau ' + ('0' + (i + 1)).slice(-2), 'Track ' + ('0' + (i + 1)).slice(-2));
+    $('p-year').textContent = t.year;
+    durEl.textContent = fmt(t.ms);
+    barsEl.innerHTML = t.bars.map(function (v) { return '<span style="height:' + Math.max(4, Math.round(v * .96)) + 'px"></span>'; }).join('');
+    Array.prototype.forEach.call(listEl.querySelectorAll('button'), function (b, j) { b.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+    paintProgress();
+  }
+  listEl.innerHTML = TRACKS.map(function (t, i) {
+    return '<li><button type="button" data-i="' + i + '"><span class="tn">' + ('0' + (i + 1)).slice(-2) + '</span><span class="tt">' + esc(t.title) + '</span><span class="td">' + fmt(t.ms) + '</span></button></li>';
+  }).join('');
+
+  function setPlaying(on) {
+    playing = on;
+    playBtn.classList.toggle('is-playing', on);
+    playBtn.classList.remove('is-loading');
+  }
+  function fallback() {
+    playBtn.classList.remove('is-loading');
+    $('p-meta').innerHTML = both('Lecture impossible ici. ', 'Playback is unavailable here. ') +
+      '<a href="' + TRACKS[cur].url + '" target="_blank" rel="noopener">' + both('Écouter sur SoundCloud ↗', 'Listen on SoundCloud ↗') + '</a>';
+  }
+  function getWidget() {
+    if (widgetPromise) return widgetPromise;
+    widgetPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = 'https://w.soundcloud.com/player/api.js';
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    }).then(function () {
+      return new Promise(function (resolve, reject) {
+        var f = document.createElement('iframe');
+        f.className = 'sc-frame';
+        f.title = 'SoundCloud';
+        f.allow = 'autoplay';
+        f.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(TRACKS[cur].url) + '&auto_play=false&visual=false&show_comments=false&show_user=false&show_reposts=false&hide_related=true';
+        document.body.appendChild(f);
+        loadedUrl = TRACKS[cur].url;
+        var w = window.SC.Widget(f), E = window.SC.Widget.Events, done = false;
+        var timer = setTimeout(function () { if (!done) reject(new Error('timeout')); }, 12000);
+        w.bind(E.READY, function () {
+          if (done) return;
+          done = true; clearTimeout(timer); widget = w;
+          w.bind(E.PLAY, function () { setPlaying(true); });
+          w.bind(E.PAUSE, function () { setPlaying(false); });
+          w.bind(E.FINISH, function () { setPlaying(false); rel = 0; paintProgress(); });
+          w.bind(E.PLAY_PROGRESS, function (e) {
+            if (e && typeof e.relativePosition === 'number') { rel = e.relativePosition; paintProgress(); }
+          });
+          resolve(w);
+        });
+      });
+    });
+    widgetPromise.catch(function () { widgetPromise = null; fallback(); });
+    return widgetPromise;
+  }
+  function playCurrent(seekRel) {
+    playBtn.classList.add('is-loading');
+    getWidget().then(function (w) {
+      var t = TRACKS[cur];
+      function go() {
+        w.play();
+        if (typeof seekRel === 'number') w.seekTo(seekRel * t.ms);
+      }
+      if (loadedUrl !== t.url) {
+        loadedUrl = t.url;
+        w.load(t.url, { auto_play: false, visual: false, show_comments: false, callback: go });
+      } else go();
+    }, function () {});
+  }
+
+  playBtn.addEventListener('click', function () {
+    if (playing && widget) widget.pause();
+    else playCurrent();
+  });
+  // Warm up the widget when the visitor is about to press play.
+  playBtn.addEventListener('pointerenter', function () { getWidget().catch(function () {}); }, { once: true });
+  listEl.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    var i = +b.getAttribute('data-i');
+    if (i === cur && playing) return;
+    if (widget && playing) widget.pause();
+    showTrack(i);
+    playCurrent();
+  });
+  barsEl.addEventListener('click', function (e) {
+    var r = barsEl.getBoundingClientRect();
+    var x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    rel = x; paintProgress();
+    if (widget && loadedUrl === TRACKS[cur].url && playing) widget.seekTo(x * TRACKS[cur].ms);
+    else playCurrent(x);
+  });
+  showTrack(0);
+
+  /* ---------- YouTube: thumbnail first, the player loads on click ---------- */
+  $('video').addEventListener('click', function () {
+    var btn = this, id = btn.getAttribute('data-id');
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.title = btn.querySelector('.vt').textContent;
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    var box = document.createElement('div');
+    box.className = 'video';
+    box.style.cursor = 'auto';
+    box.appendChild(f);
+    btn.replaceWith(box);
+  });
+})();
+</script>
+</body>
 </html>
